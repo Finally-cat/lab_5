@@ -7,7 +7,7 @@ public class Worker {
     private final long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
-    private java.time.ZonedDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private final java.time.ZonedDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private long salary; //Значение поля должно быть больше 0
     private java.time.LocalDate startDate; //Поле не может быть null
     private java.time.LocalDate endDate; //Поле может быть null
@@ -20,14 +20,14 @@ public class Worker {
         } else {
             throw new IllegalArgumentException("id не может быть меньше 0");
         }
-
-        this.coordinates = coordinates;
-        this.creationDate = creationDate;
-        this.salary = salary;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.position = position;
-        this.person = person;
+        this.setName(name);
+        this.setCoordinates(coordinates);
+        this.creationDate = ZonedDateTime.now(); // тут непонятно как валидировать и нужно ли?
+        this.setSalary(salary);
+        this.setStartDate(startDate);
+        this.setEndDate(endDate);
+        this.setPosition(position);
+        this.setPerson(person);
     }
 
     public long getId() {
@@ -44,28 +44,30 @@ public class Worker {
             this.name = name;} else {throw new IllegalArgumentException("name не может быть null и пустой");}
     }
 
-    public Coordinates getCoordinates() {
+    public Coordinates getCoordinates() throws IllegalArgumentException {
         return coordinates;
     }
 
-    public void setCoordinates(Coordinates coordinates) {
-        this.coordinates = coordinates;
+    public void setCoordinates(Coordinates coordinates) throws IllegalArgumentException {
+        if (coordinates != null){
+            this.coordinates = coordinates;}
+        else {throw new IllegalArgumentException("coordinates не может быть null");}
     }
 
     public ZonedDateTime getCreationDate() {
+
         return creationDate;
     }
 
-    public void setCreationDate(ZonedDateTime creationDate) {
-        this.creationDate = creationDate;
-    }
 
     public long getSalary() {
         return salary;
     }
 
-    public void setSalary(long salary) {
-        this.salary = salary;
+    public void setSalary(long salary) throws IllegalArgumentException {
+        if (salary > 0){this.salary = salary;
+            } else {throw new IllegalArgumentException("Значение salary должно быть больше 0");}
+
     }
 
     public LocalDate getStartDate() {
@@ -73,7 +75,9 @@ public class Worker {
     }
 
     public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+        if (startDate != null){
+            this.startDate = startDate;}
+        else {throw new IllegalArgumentException("startDate не может быть null");}
     }
 
     public LocalDate getEndDate() {
@@ -81,7 +85,9 @@ public class Worker {
     }
 
     public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
+        if (endDate != null){
+            this.endDate = endDate;}
+        else {throw new IllegalArgumentException("endDate не может быть null");}
     }
 
     public Position getPosition() {
@@ -89,7 +95,9 @@ public class Worker {
     }
 
     public void setPosition(Position position) {
-        this.position = position;
+        if (position != null){
+            this.position = position;}
+        else {throw new IllegalArgumentException("position не может быть null");}
     }
 
     public Person getPerson() {
@@ -97,6 +105,8 @@ public class Worker {
     }
 
     public void setPerson(Person person) {
-        this.person = person;
+        if (person != null){
+            this.person = person;}
+        else {throw new IllegalArgumentException("person не может быть null");}
     }
 }
