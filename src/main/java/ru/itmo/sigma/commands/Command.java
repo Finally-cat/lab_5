@@ -10,11 +10,11 @@ public abstract class Command {
         this.name = name;
     }
 
-    public  String getName() {
+    public String getName() {
         return name;
     }
 
-    public abstract void execute(Environment env, PrintStream stdin, InputStream stdout);
+    public abstract void execute(String[] strings, Environment env, PrintStream stdin, InputStream stdout);
 
     public abstract String getHelp();
 }
