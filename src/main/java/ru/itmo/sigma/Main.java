@@ -1,8 +1,5 @@
 package ru.itmo.sigma;
-import ru.itmo.sigma.commands.Command;
-import ru.itmo.sigma.commands.Environment;
-import ru.itmo.sigma.commands.HelpCommand;
-import ru.itmo.sigma.commands.TestCommand;
+import ru.itmo.sigma.commands.*;
 import ru.itmo.sigma.data.*;
 
 import java.io.InputStream;
@@ -27,8 +24,11 @@ public class Main {
 
 // Register TestCommand and HelpCommand
         TestCommand.register(hashMap);
-        hashMap.put("help", new HelpCommand());
         hashMap.put("test", new TestCommand());
+        hashMap.put("help", new HelpCommand());
+        hashMap.put("info", new InfoCommand());
+        hashMap.put("exit", new ExitCommand());
+
 
 // Command processing loop
         while (in.hasNextLine()) {

@@ -3,27 +3,23 @@ package ru.itmo.sigma.commands;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.HashMap;
+import java.util.Map;
 
-public class HelpCommand extends Command{
+public class HelpCommand extends Command {
     public HelpCommand() {
         super("help");
     }
 
     @Override
-    public void execute(String[] strings, Environment env, PrintStream stdin, InputStream stdout) {
-        System.out.println("help");
+    public void execute(String[] args, Environment env, PrintStream out, InputStream in) {
+        out.println("Available commands:");
+        for (Map.Entry<String, Command> entry : env.getStringCommandHashMap().entrySet()) {
+            out.println(entry.getKey() + " - " + entry.getValue().getHelp());
+        }
     }
-
-//    @Override
-//    public void execute(Environment env, PrintStream stdin, InputStream stdout) {
-//        HashMap<String, Command> stringCommandHashMap = env.getStringCommandHashMap():
-//        stringCommandHashMap.forEach((String.key, ));
-//    }
-
-
 
     @Override
     public String getHelp() {
-        return "";
+        return "Displays the list of available commands";
     }
 }
