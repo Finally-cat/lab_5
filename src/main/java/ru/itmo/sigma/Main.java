@@ -1,7 +1,7 @@
 package ru.itmo.sigma;
 import ru.itmo.sigma.commands.Command;
-import ru.itmo.sigma.commands.Envirnment;
 import ru.itmo.sigma.commands.Environment;
+import ru.itmo.sigma.commands.HelpCommand;
 import ru.itmo.sigma.commands.TestCommand;
 import ru.itmo.sigma.data.*;
 
@@ -23,62 +23,40 @@ public class Main {
         PrintStream printStream = System.out;
         InputStream inputStream = System.in;
 
+        TestCommand.register(hashMap);
 
-//        while (in.hasNextLine()){
-//            String line = in.nextLine();
-//            String[] s = line.split(" ");
-//            String[] cArgs = new String[s.length - 1];
-//            System.arraycopy();
-//            if (hashMap.containsKey(line)) {
-//                Command command = hashMap.get(line);
-//                command.execute();
-//            } else {
-//                System.err.println("Unknown command: " + line);
-//            }
-//        }
-//        while (in.hasNextLine()) {
-//            String line = in.nextLine().trim();
-//            if (line.isEmpty()) continue; // Игнорируем пустые строки
-//
-//            String[] s = line.split("\\s+");
-//            String commandName = s[0];
-//            String[] cArgs = (s.length > 1) ? Arrays.copyOfRange(s, 1, s.length) : new String[0];
-//
-//            if ("exit".equalsIgnoreCase(commandName)) {
-//                System.out.println("Выход...");
-//                break;
-//            }
-//
-//            Command command = hashMap.get(commandName);
-//            if (command != null) {
-//                try {
-//                    command.execute(cArgs); // Исполняем команду с аргументами
-//                } catch (Exception e) {
-//                    System.err.println("Ошибка выполнения команды: " + e.getMessage());
-//                }
-//            } else {
-//                System.err.println("Неизвестная команда: " + commandName);
-//            }
-//        }
+// Register TestCommand and HelpCommand
+        TestCommand.register(hashMap);
+        hashMap.put("help", new HelpCommand());
+        hashMap.put("test", new TestCommand());
+
+// Command processing loop
         while (in.hasNextLine()) {
             String line = in.nextLine().trim();
-            String[] s = line.split("\\s+"); // Разделение по пробелам (учёт нескольких пробелов)
+            if (line.isEmpty()) continue; // Ignore empty lines
 
-            if (s.length == 0) continue; // Пропускаем пустую строку
+            String[] s = line.split("\\s+"); // Split input into command and arguments
+            String commandName = s[0]; // The command's name
+            String[] cArgs = (s.length > 1) ? Arrays.copyOfRange(s, 1, s.length) : new String[0]; // Arguments for the command
 
-            String commandName = s[0]; // Команда (первое слово)
-            String[] cArgs = new String[s.length - 1]; // Аргументы (остальные слова)
+            // Handle the "exit" command
+            if ("exit".equalsIgnoreCase(commandName)) {
+                System.out.println("Exiting...");
+                break;
+            }
 
-            System.arraycopy(s, 1, cArgs, 0, cArgs.length); // Копируем аргументы
-
-            if (hashMap.containsKey(commandName)) {
-                Command command = hashMap.get(commandName);
-                command.execute(cArgs, environment,printStream, inputStream); // Передаём аргументы
+            // Command execution
+            Command command = hashMap.get(commandName);
+            if (command != null) {
+                try {
+                    command.execute(cArgs, environment, printStream, inputStream); // Execute the command
+                } catch (Exception e) {
+                    System.err.println("Command execution failed: " + e.getMessage());
+                }
             } else {
                 System.err.println("Unknown command: " + commandName);
             }
         }
-
 
 
     }

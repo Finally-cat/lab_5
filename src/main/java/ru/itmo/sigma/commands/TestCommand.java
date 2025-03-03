@@ -10,11 +10,12 @@ public class TestCommand extends Command{
         super("test");
     }
 
+
+
     @Override
-    public void execute(Environment env, PrintStream stdin, InputStream stdout) {
+    public void execute(String[] strings, Environment env, PrintStream stdin, InputStream stdout) {
 
     }
-
 
     @Override
     public String getHelp() {
