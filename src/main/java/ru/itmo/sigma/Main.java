@@ -1,6 +1,7 @@
 package ru.itmo.sigma;
 import ru.itmo.sigma.commands.*;
 import ru.itmo.sigma.data.*;
+import ru.itmo.sigma.exeption.CommandException;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -39,11 +40,6 @@ public class Main {
             String commandName = s[0]; // The command's name
             String[] cArgs = (s.length > 1) ? Arrays.copyOfRange(s, 1, s.length) : new String[0]; // Arguments for the command
 
-            // Handle the "exit" command
-            if ("exit".equalsIgnoreCase(commandName)) {
-                System.out.println("Exiting...");
-                break;
-            }
 
             // Command execution
             Command command = hashMap.get(commandName);

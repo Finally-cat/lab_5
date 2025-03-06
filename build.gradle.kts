@@ -14,6 +14,6 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
-tasks.test {
-    useJUnitPlatform()
+dependencies {
+    implementation("com.thoughtworks.xstream:xstream:1.4.20")
 }
