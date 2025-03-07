@@ -1,7 +1,6 @@
 package ru.itmo.sigma;
 import ru.itmo.sigma.commands.*;
 import ru.itmo.sigma.data.*;
-import ru.itmo.sigma.exeption.CommandException;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -12,6 +11,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+        WorkerTreeSet tree = new WorkerTreeSet();
+
         Scanner in = new Scanner(System.in);
 
         HashMap<String, Command> hashMap = new HashMap<>();
@@ -21,15 +22,14 @@ public class Main {
         PrintStream printStream = System.out;
         InputStream inputStream = System.in;
 
-        TestCommand.register(hashMap);
+
 
 // Register TestCommand and HelpCommand
-        TestCommand.register(hashMap);
         hashMap.put("test", new TestCommand());
         hashMap.put("help", new HelpCommand());
         hashMap.put("info", new InfoCommand());
         hashMap.put("exit", new ExitCommand());
-
+        hashMap.put("show", new ShowCommand());
 
 // Command processing loop
         while (in.hasNextLine()) {
@@ -45,7 +45,7 @@ public class Main {
             Command command = hashMap.get(commandName);
             if (command != null) {
                 try {
-                    command.execute(cArgs, environment, printStream, inputStream); // Execute the command
+                    command.execute(cArgs, environment, printStream, inputStream, tree); // Execute the command
                 } catch (Exception e) {
                     System.err.println("Command execution failed: " + e.getMessage());
                 }

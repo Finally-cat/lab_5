@@ -3,6 +3,7 @@ package ru.itmo.sigma.data;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Worker implements Comparable<Worker> {
     private final long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
@@ -154,6 +155,22 @@ public class Worker implements Comparable<Worker> {
             this.setEndDate(endDate);
             this.setPosition(position);
             this.setPerson(person);
+    }
+
+    public Worker create(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Введите ID: ");
+        long id = scanner.nextLong();
+        scanner.nextLine(); // Считываем лишний перевод строки
+
+        System.out.print("Введите имя: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Введите возраст: ");
+        int age = scanner.nextInt();
+
+        Worker worker = new Worker(id, name, age);
     }
 
 }
