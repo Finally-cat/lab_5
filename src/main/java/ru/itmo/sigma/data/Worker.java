@@ -157,20 +157,5 @@ public class Worker implements Comparable<Worker> {
             this.setPerson(person);
     }
 
-    public Worker create(){
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Введите ID: ");
-        long id = scanner.nextLong();
-        scanner.nextLine(); // Считываем лишний перевод строки
-
-        System.out.print("Введите имя: ");
-        String name = scanner.nextLine();
-
-        System.out.print("Введите возраст: ");
-        int age = scanner.nextInt();
-
-        Worker worker = new Worker(id, name, age);
-    }
 
 }
