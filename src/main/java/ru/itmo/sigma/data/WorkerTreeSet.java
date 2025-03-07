@@ -1,6 +1,7 @@
 package ru.itmo.sigma.data;
 
 import com.thoughtworks.xstream.XStream;
+import ru.itmo.sigma.filemanaging.XmlWorkerManager;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -12,6 +13,22 @@ import java.util.NoSuchElementException;
 
 public class WorkerTreeSet {
     private TreeSet<Worker> wTree = new TreeSet<>();
+    private final TreeSet<Worker> workers;
+    private final XmlWorkerManager xmlManager;
+
+    public WorkerTreeSet(String filePath) {
+        this.xmlManager = new XmlWorkerManager(filePath);
+        this.workers = xmlManager.load();
+    }
+
+    public void save() {
+        xmlManager.save(workers);
+    }
+
+    public void load() {
+        workers.clear(); // Очищаем текущую коллекцию
+        workers.addAll(xmlManager.load()); // Загружаем из файла
+    }
 
     public void add(Worker worker) {
         wTree.add(worker);

@@ -17,3 +17,9 @@ dependencies {
 dependencies {
     implementation("com.thoughtworks.xstream:xstream:1.4.20")
 }
+
+dependencies {
+    implementation("javax.xml.bind:jaxb-api:2.3.1")
+    implementation("org.glassfish.jaxb:jaxb-runtime:2.3.1")
+}
+
