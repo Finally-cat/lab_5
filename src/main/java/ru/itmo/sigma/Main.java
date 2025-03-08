@@ -8,10 +8,26 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import ru.itmo.sigma.filemanaging.XMLReader;
+
+import java.io.File;
+
 public class Main {
     public static void main(String[] args) {
 
-        WorkerTreeSet tree = new WorkerTreeSet();
+
+        WorkerTreeSet tree;
+        String filePath = "workers.xml"; // Path to the XML file
+        File file = new File(filePath);
+
+        if (file.exists() && !file.isDirectory()) {
+            tree = new WorkerTreeSet();
+            tree.setWTree(XMLReader.readWorkersFromXML(filePath)); // Load data from XML
+            System.out.println("Loaded WorkerTreeSet from XML file.");
+        } else {
+            tree = new WorkerTreeSet(); // Create a new WorkerTreeSet
+            System.out.println("No XML file found. Created a new WorkerTreeSet.");
+        }
 
         Scanner in = new Scanner(System.in);
 
@@ -30,6 +46,7 @@ public class Main {
         hashMap.put("info", new InfoCommand());
         hashMap.put("exit", new ExitCommand());
         hashMap.put("show", new ShowCommand());
+        hashMap.put("add", new AddCommand());
 
 // Command processing loop
         while (in.hasNextLine()) {
