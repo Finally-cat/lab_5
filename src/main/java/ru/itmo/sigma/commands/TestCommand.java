@@ -4,7 +4,6 @@ import ru.itmo.sigma.data.WorkerTreeSet;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.HashMap;
 
 public class TestCommand extends Command{
 
@@ -15,7 +14,7 @@ public class TestCommand extends Command{
 
 
     @Override
-    public void execute(String[] strings, Environment env, PrintStream stdin, InputStream stdout, WorkerTreeSet workerTreeSet) {
+    public void execute(String[] strings, Environment env, PrintStream stderr, PrintStream stdout, InputStream stdin, WorkerTreeSet workerTreeSet) {
 
     }
 

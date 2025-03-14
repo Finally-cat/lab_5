@@ -3,6 +3,7 @@ package ru.itmo.sigma.data;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Worker implements Comparable<Worker> {
@@ -84,7 +85,7 @@ public class Worker implements Comparable<Worker> {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(LocalDate startDate) throws IllegalArgumentException {
         if (startDate != null) {
             this.startDate = startDate;
         } else {
@@ -96,7 +97,7 @@ public class Worker implements Comparable<Worker> {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(LocalDate endDate) throws IllegalArgumentException {
         if (endDate != null) {
             this.endDate = endDate;
         } else {
@@ -108,7 +109,7 @@ public class Worker implements Comparable<Worker> {
         return position;
     }
 
-    public void setPosition(Position position) {
+    public void setPosition(Position position) throws IllegalArgumentException {
         if (position != null) {
             this.position = position;
         } else {
@@ -120,7 +121,7 @@ public class Worker implements Comparable<Worker> {
         return person;
     }
 
-    public void setPerson(Person person) {
+    public void setPerson(Person person) throws IllegalArgumentException {
         if (person != null) {
             this.person = person;
         } else {
@@ -144,10 +145,14 @@ public class Worker implements Comparable<Worker> {
         return Objects.equals(worker.id, this.id);
     }
 
+    public String toString() {
+        return "Worker: "+ name + id + coordinates +  creationDate + salary + startDate + endDate + position + person;
+    }
+
     public int hashCode() {
         return Objects.hash(id);
     }
-    public void edit(Worker worker, String name, Coordinates coordinates, ZonedDateTime creationDate, long salary, LocalDate startDate, LocalDate endDate, Position position, Person person) throws IllegalArgumentException {
+    public void edit(String name, Coordinates coordinates, long salary, LocalDate startDate, LocalDate endDate, Position position, Person person) throws IllegalArgumentException {
             this.setName(name);
             this.setCoordinates(coordinates);
             this.setSalary(salary);

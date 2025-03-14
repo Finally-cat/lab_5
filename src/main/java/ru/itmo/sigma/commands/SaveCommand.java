@@ -10,7 +10,7 @@ public class SaveCommand extends Command {
     }
 
     @Override
-    public void execute(String[] args, Environment env, PrintStream out, InputStream in, WorkerTreeSet tree) {
+    public void execute(String[] args, Environment env, PrintStream stderr, PrintStream out, InputStream in, WorkerTreeSet tree) {
         tree.save();
         out.println("Коллекция успешно сохранена в файл.");
     }

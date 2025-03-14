@@ -15,7 +15,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(String[] strings, Environment env, PrintStream stdin, InputStream stdout, WorkerTreeSet workerTreeSet) {
+    public void execute(String[] strings, Environment env, PrintStream stderr, PrintStream stdout, InputStream stdin, WorkerTreeSet workerTreeSet) {
         if (strings.length < 15) { // Проверка данных
             System.out.println("Недостаточно данных для создания Worker");
             return;

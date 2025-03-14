@@ -8,17 +8,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import ru.itmo.sigma.filemanaging.XMLReader;
-
-import java.io.File;
-
 public class Main {
     public static void main(String[] args) {
         // Получаем путь к файлу из переменной окружения
         String filePath = System.getenv("WORKER_FILE");
         if (filePath == null) {
             System.err.println("Переменная окружения WORKER_FILE не задана!");
-            System.exit(1);
+//            System.exit(1);
+            // ЗАЧЕМ ЭТО НУЖНО ??????????????????
         }
 
         // Создаем коллекцию и окружение
@@ -35,10 +32,12 @@ public class Main {
         hashMap.put("add", new AddCommand());
         hashMap.put("save", new SaveCommand());
         hashMap.put("load", new LoadCommand());
+        hashMap.put("update", new LoadCommand());
 
         // Потоки ввода/вывода
         PrintStream printStream = System.out;
         InputStream inputStream = System.in;
+        PrintStream errorStream = System.err;
         Scanner in = new Scanner(inputStream);
 
         // Основной цикл команд
@@ -54,7 +53,7 @@ public class Main {
             Command command = hashMap.get(commandName);
             if (command != null) {
                 try {
-                    command.execute(cArgs, environment, printStream, inputStream, tree);
+                    command.execute(cArgs, environment, errorStream , printStream, inputStream, tree);
 
                 } catch (Exception e) {
                     System.err.println("Ошибка выполнения команды: " + e.getMessage());

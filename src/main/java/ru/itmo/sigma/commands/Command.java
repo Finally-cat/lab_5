@@ -16,7 +16,7 @@ public abstract class Command {
         return name;
     }
 
-    public abstract void execute(String[] strings, Environment env, PrintStream stdin, InputStream stdout, WorkerTreeSet workerTreeSet);
+    public abstract void execute(String[] strings, Environment env, PrintStream stderr, PrintStream stdout, InputStream stdin, WorkerTreeSet workerTreeSet);
 
     public abstract String getHelp();
 }

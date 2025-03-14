@@ -9,7 +9,7 @@ public class LoadCommand extends Command {
     }
 
     @Override
-    public void execute(String[] args, Environment env, PrintStream out, InputStream in, WorkerTreeSet tree) {
+    public void execute(String[] args, Environment env, PrintStream stderr, PrintStream out, InputStream in, WorkerTreeSet tree) {
         tree.load(); // Загружаем коллекцию заново
         out.println("Коллекция загружена из файла.");
     }

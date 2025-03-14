@@ -9,7 +9,7 @@ public class ShowCommand extends Command{
     public ShowCommand() { super("show"); }
 
     @Override
-    public void execute(String[] strings, Environment env, PrintStream stdin, InputStream stdout, WorkerTreeSet workerTreeSet) {
+    public void execute(String[] strings, Environment env, PrintStream stderr, PrintStream stdout, InputStream stdin, WorkerTreeSet workerTreeSet) {
     workerTreeSet.treeToString();
     }
 

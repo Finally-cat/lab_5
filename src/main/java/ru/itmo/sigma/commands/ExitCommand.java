@@ -11,7 +11,7 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public void execute(String[] args, Environment env, PrintStream out, InputStream in, WorkerTreeSet workerTreeSet) {
+    public void execute(String[] args, Environment env, PrintStream stderr, PrintStream out, InputStream in, WorkerTreeSet workerTreeSet) {
         out.println("Exiting program...");
         System.exit(0);
     }

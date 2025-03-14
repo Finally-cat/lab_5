@@ -11,7 +11,7 @@ public class InfoCommand extends Command {
     }
 
     @Override
-    public void execute(String[] args, Environment env, PrintStream out, InputStream in, WorkerTreeSet workerTreeSet) {
+    public void execute(String[] args, Environment env, PrintStream stderr, PrintStream out, InputStream in, WorkerTreeSet workerTreeSet) {
         out.println("Collection info: Type - TreeSet, Size - " + env.getStringCommandHashMap().size());
     }
 
