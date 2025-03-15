@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.ZonedDateTime;
 
 public class UpdateCommand extends Command {
-    protected UpdateCommand() {
+    public UpdateCommand() {
         super("update");
     }
 

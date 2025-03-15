@@ -32,8 +32,8 @@ public class Main {
         hashMap.put("add", new AddCommand());
         hashMap.put("save", new SaveCommand());
         hashMap.put("load", new LoadCommand());
-        hashMap.put("update", new LoadCommand());
-
+        hashMap.put("update", new UpdateCommand());
+        hashMap.put("remove_all_by_salary", new RemoveAllBySalaryCommand());
         // Потоки ввода/вывода
         PrintStream printStream = System.out;
         InputStream inputStream = System.in;
