@@ -89,4 +89,9 @@ public class WorkerTreeSet {
        }
     }
 
+    public Worker getMinWorker() {
+        return wTree.stream()
+                .min(Worker::compareTo) // Используем compareTo() из Comparable<Worker>
+                .orElseThrow(() -> new NoSuchElementException("Коллекция пуста, минимальный Worker отсутствует"));
+    }
 }

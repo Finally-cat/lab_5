@@ -61,4 +61,8 @@ public class Person {
         return birthday;
     }
 
+    public String toString() {
+        return "Person: "+ "birthday: " + birthday + " eyeColor: " + eyeColor + " hairColor: " + hairColor + " nationality: " + nationality +" location: " + location.toString();
+    }
+
 }

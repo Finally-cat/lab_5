@@ -57,7 +57,7 @@ public class AddCommand extends Command {
             Worker worker = new Worker(id, name, coordinates, date, salary, startDate, endDate, position, person);
 
             workerTreeSet.add(worker);
-            stdout.println("Worker добавлен: " + worker);
+            stdout.println("Worker добавлен: " + worker.toString());
 
         } catch (Exception e) {
             stderr.println("Ошибка: " + e.getMessage());
@@ -110,7 +110,7 @@ public class AddCommand extends Command {
 
                 Worker a = new  Worker(id, name, coordinates, date, salary, startDate, endDate, position, person);
                 worker = a;
-                stdout.println("Worker создан " + worker);
+                stdout.println("Worker создан " + worker.toString());
 
             } catch (Exception e) {
                 stderr.println("Ошибка: " + e.getMessage());

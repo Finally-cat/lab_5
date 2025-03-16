@@ -42,12 +42,10 @@ public class Worker implements Comparable<Worker> {
     }
 
     public void setName(String name) throws IllegalArgumentException {
-
-        if (name != null && name.isBlank()) {
-            this.name = name;
-        } else {
-            throw new IllegalArgumentException("name не может быть null и пустой");
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("name не может быть null или пустым");
         }
+        this.name = name;
     }
 
     public Coordinates getCoordinates() throws IllegalArgumentException {
@@ -146,7 +144,7 @@ public class Worker implements Comparable<Worker> {
     }
 
     public String toString() {
-        return "Worker: "+ name + id + coordinates +  creationDate + salary + startDate + endDate + position + person;
+        return "Worker: "+"name: "+ name +" id: "+ id + " coordinates: " + coordinates.toString() +" creationDate: " +  creationDate +" salary: " + salary +" startDate: " + startDate +" endDate: " + endDate +" position: " + position + " person: " + person.toString();
     }
 
     public int hashCode() {

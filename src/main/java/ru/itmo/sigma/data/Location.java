@@ -56,5 +56,10 @@ public class Location {
             throw new IllegalArgumentException("Длина name не должна быть больше 919, name не может быть null");
         }
     }
+
+    public String toString() {
+        return "Location: " + x + y + z + name;
+    }
+
 }
 

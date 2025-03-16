@@ -25,4 +25,7 @@ public class Coordinates {
     private void setX(float x) {
         this.x = x;
     }
+    public String toString() {
+        return "Coordinates: "+ x + y;
+    }
 }
