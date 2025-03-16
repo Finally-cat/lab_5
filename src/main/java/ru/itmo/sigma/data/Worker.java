@@ -6,6 +6,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Scanner;
 
+/**
+ * The type Worker.
+ */
 public class Worker implements Comparable<Worker> {
     private final long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
@@ -17,6 +20,20 @@ public class Worker implements Comparable<Worker> {
     private Position position; //Поле может быть null
     private Person person; //Поле не может быть null
 
+    /**
+     * Instantiates a new Worker.
+     *
+     * @param id           the id
+     * @param name         the name
+     * @param coordinates  the coordinates
+     * @param creationDate the creation date
+     * @param salary       the salary
+     * @param startDate    the start date
+     * @param endDate      the end date
+     * @param position     the position
+     * @param person       the person
+     * @throws IllegalArgumentException the illegal argument exception
+     */
     public Worker(long id, String name, Coordinates coordinates, ZonedDateTime creationDate, long salary, LocalDate startDate, LocalDate endDate, Position position, Person person) throws IllegalArgumentException {
         if (id > 0) {
             this.id = id;
@@ -33,14 +50,30 @@ public class Worker implements Comparable<Worker> {
         this.setPerson(person);
     }
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public long getId() {
         return id;
     }
 
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets name.
+     *
+     * @param name the name
+     * @throws IllegalArgumentException the illegal argument exception
+     */
     public void setName(String name) throws IllegalArgumentException {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("name не может быть null или пустым");
@@ -48,10 +81,22 @@ public class Worker implements Comparable<Worker> {
         this.name = name;
     }
 
+    /**
+     * Gets coordinates.
+     *
+     * @return the coordinates
+     * @throws IllegalArgumentException the illegal argument exception
+     */
     public Coordinates getCoordinates() throws IllegalArgumentException {
         return coordinates;
     }
 
+    /**
+     * Sets coordinates.
+     *
+     * @param coordinates the coordinates
+     * @throws IllegalArgumentException the illegal argument exception
+     */
     public void setCoordinates(Coordinates coordinates) throws IllegalArgumentException {
         if (coordinates != null) {
             this.coordinates = coordinates;
@@ -60,16 +105,32 @@ public class Worker implements Comparable<Worker> {
         }
     }
 
+    /**
+     * Gets creation date.
+     *
+     * @return the creation date
+     */
     public ZonedDateTime getCreationDate() {
 
         return creationDate;
     }
 
 
+    /**
+     * Gets salary.
+     *
+     * @return the salary
+     */
     public long getSalary() {
         return salary;
     }
 
+    /**
+     * Sets salary.
+     *
+     * @param salary the salary
+     * @throws IllegalArgumentException the illegal argument exception
+     */
     public void setSalary(long salary) throws IllegalArgumentException {
         if (salary > 0) {
             this.salary = salary;
@@ -79,10 +140,21 @@ public class Worker implements Comparable<Worker> {
 
     }
 
+    /**
+     * Gets start date.
+     *
+     * @return the start date
+     */
     public LocalDate getStartDate() {
         return startDate;
     }
 
+    /**
+     * Sets start date.
+     *
+     * @param startDate the start date
+     * @throws IllegalArgumentException the illegal argument exception
+     */
     public void setStartDate(LocalDate startDate) throws IllegalArgumentException {
         if (startDate != null) {
             this.startDate = startDate;
@@ -91,10 +163,21 @@ public class Worker implements Comparable<Worker> {
         }
     }
 
+    /**
+     * Gets end date.
+     *
+     * @return the end date
+     */
     public LocalDate getEndDate() {
         return endDate;
     }
 
+    /**
+     * Sets end date.
+     *
+     * @param endDate the end date
+     * @throws IllegalArgumentException the illegal argument exception
+     */
     public void setEndDate(LocalDate endDate) throws IllegalArgumentException {
         if (endDate != null) {
             this.endDate = endDate;
@@ -103,10 +186,21 @@ public class Worker implements Comparable<Worker> {
         }
     }
 
+    /**
+     * Gets position.
+     *
+     * @return the position
+     */
     public Position getPosition() {
         return position;
     }
 
+    /**
+     * Sets position.
+     *
+     * @param position the position
+     * @throws IllegalArgumentException the illegal argument exception
+     */
     public void setPosition(Position position) throws IllegalArgumentException {
         if (position != null) {
             this.position = position;
@@ -115,10 +209,21 @@ public class Worker implements Comparable<Worker> {
         }
     }
 
+    /**
+     * Gets person.
+     *
+     * @return the person
+     */
     public Person getPerson() {
         return person;
     }
 
+    /**
+     * Sets person.
+     *
+     * @param person the person
+     * @throws IllegalArgumentException the illegal argument exception
+     */
     public void setPerson(Person person) throws IllegalArgumentException {
         if (person != null) {
             this.person = person;
@@ -150,6 +255,19 @@ public class Worker implements Comparable<Worker> {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    /**
+     * Edit.
+     *
+     * @param name        the name
+     * @param coordinates the coordinates
+     * @param salary      the salary
+     * @param startDate   the start date
+     * @param endDate     the end date
+     * @param position    the position
+     * @param person      the person
+     * @throws IllegalArgumentException the illegal argument exception
+     */
     public void edit(String name, Coordinates coordinates, long salary, LocalDate startDate, LocalDate endDate, Position position, Person person) throws IllegalArgumentException {
             this.setName(name);
             this.setCoordinates(coordinates);

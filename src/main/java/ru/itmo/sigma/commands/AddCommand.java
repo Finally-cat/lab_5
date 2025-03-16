@@ -12,7 +12,13 @@ import java.util.Scanner;
 
 import static ru.itmo.sigma.IdGenerator.generateId;
 
+/**
+ * The type Add command.
+ */
 public class AddCommand extends Command {
+    /**
+     * Instantiates a new Add command.
+     */
     public AddCommand() {
         super("add");
     }
@@ -71,6 +77,14 @@ public class AddCommand extends Command {
 
     // Методы валидации и повторного ввода и прочее
 
+    /**
+     * Create worker.
+     *
+     * @param stderr the stderr
+     * @param stdout the stdout
+     * @param stdin  the stdin
+     * @return the worker
+     */
     public Worker create( PrintStream stderr, PrintStream stdout, InputStream stdin) {
         Worker worker = null;
             Scanner scanner = new Scanner(stdin);

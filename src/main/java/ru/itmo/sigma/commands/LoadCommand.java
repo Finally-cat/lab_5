@@ -3,7 +3,13 @@ import ru.itmo.sigma.data.WorkerTreeSet;
 import java.io.InputStream;
 import java.io.PrintStream;
 
+/**
+ * The type Load command.
+ */
 public class LoadCommand extends Command {
+    /**
+     * Instantiates a new Load command.
+     */
     public LoadCommand() {
         super("load");
     }

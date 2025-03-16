@@ -10,7 +10,16 @@ import java.io.IOException;
 import java.util.TreeSet;
 
 
+/**
+ * The type Xml reader.
+ */
 public class XMLReader {
+    /**
+     * Read workers from xml tree set.
+     *
+     * @param filePath the file path
+     * @return the tree set
+     */
     public static TreeSet<Worker> readWorkersFromXML(String filePath) {
         XStream xstream = new XStream(new DomDriver());
 

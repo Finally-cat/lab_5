@@ -6,7 +6,13 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.time.LocalDate;
 
+/**
+ * The type Remove any by start date command.
+ */
 public class RemoveAnyByStartDateCommand extends Command{
+    /**
+     * Instantiates a new Remove any by start date command.
+     */
     public RemoveAnyByStartDateCommand() {
         super("remove_any_by_start_date");
     }

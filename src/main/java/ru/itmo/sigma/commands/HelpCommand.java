@@ -7,7 +7,13 @@ import java.io.PrintStream;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * The type Help command.
+ */
 public class HelpCommand extends Command {
+    /**
+     * Instantiates a new Help command.
+     */
     public HelpCommand() {
         super("help");
     }

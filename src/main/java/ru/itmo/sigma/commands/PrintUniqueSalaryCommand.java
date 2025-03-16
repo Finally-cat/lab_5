@@ -8,7 +8,13 @@ import java.io.PrintStream;
 import java.util.Set;
 import java.util.TreeSet;
 
+/**
+ * The type Print unique salary command.
+ */
 public class PrintUniqueSalaryCommand extends Command {
+    /**
+     * Instantiates a new Print unique salary command.
+     */
     public PrintUniqueSalaryCommand() {
         super("print_unique_salary");
     }

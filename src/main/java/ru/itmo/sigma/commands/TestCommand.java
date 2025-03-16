@@ -5,8 +5,14 @@ import ru.itmo.sigma.data.WorkerTreeSet;
 import java.io.InputStream;
 import java.io.PrintStream;
 
+/**
+ * The type Test command.
+ */
 public class TestCommand extends Command{
 
+    /**
+     * Instantiates a new Test command.
+     */
     public TestCommand() {
         super("test");
     }

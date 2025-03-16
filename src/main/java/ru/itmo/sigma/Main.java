@@ -6,7 +6,15 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.*;
 
+/**
+ * The type Main.
+ */
 public class Main {
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         // Получаем путь к файлу из переменной окружения
         String filePath = System.getenv("WORKER_FILE");

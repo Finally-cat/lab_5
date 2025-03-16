@@ -5,7 +5,13 @@ import ru.itmo.sigma.data.WorkerTreeSet;
 import java.io.InputStream;
 import java.io.PrintStream;
 
+/**
+ * The type Clear command.
+ */
 public class ClearCommand extends Command{
+    /**
+     * Instantiates a new Clear command.
+     */
     public ClearCommand() {
         super("clear");
     }

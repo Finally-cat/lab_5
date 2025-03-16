@@ -6,14 +6,24 @@ import javax.xml.bind.*;
 import java.io.File;
 import java.util.TreeSet;
 
+/**
+ * The type Xml worker manager.
+ */
 public class XmlWorkerManager {
     private final String filePath;
 
+    /**
+     * Instantiates a new Xml worker manager.
+     *
+     * @param filePath the file path
+     */
     public XmlWorkerManager(String filePath) {
         this.filePath = filePath;
     }
 
-    /** Сохраняет коллекцию в XML */
+    /**
+     * Сохраняет коллекцию в XML  @param workers the workers
+     */
     public void save(TreeSet<Worker> workers) {
         try {
             JAXBContext context = JAXBContext.newInstance(WorkersWrapper.class);
@@ -30,7 +40,9 @@ public class XmlWorkerManager {
         }
     }
 
-    /** Загружает коллекцию из XML */
+    /**
+     * Загружает коллекцию из XML  @return the tree set
+     */
     public TreeSet<Worker> load() {
         try {
             File file = new File(filePath);

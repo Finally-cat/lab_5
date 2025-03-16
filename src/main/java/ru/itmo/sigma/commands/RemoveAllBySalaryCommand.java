@@ -5,8 +5,14 @@ import ru.itmo.sigma.data.WorkerTreeSet;
 import java.io.InputStream;
 import java.io.PrintStream;
 
+/**
+ * The type Remove all by salary command.
+ */
 public class RemoveAllBySalaryCommand extends Command {
 
+    /**
+     * Instantiates a new Remove all by salary command.
+     */
     public RemoveAllBySalaryCommand() {
         super("remove_all_by_salary");
     }

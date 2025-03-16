@@ -4,9 +4,17 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Deque;
 
+/**
+ * The type History command.
+ */
 public class HistoryCommand extends Command {
     private final Deque<String> history;
 
+    /**
+     * Instantiates a new History command.
+     *
+     * @param history the history
+     */
     public HistoryCommand(Deque<String> history) {
         super("history");
         this.history = history;

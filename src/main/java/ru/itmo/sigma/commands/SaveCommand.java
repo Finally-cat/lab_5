@@ -4,7 +4,13 @@ import ru.itmo.sigma.data.WorkerTreeSet;
 import java.io.InputStream;
 import java.io.PrintStream;
 
+/**
+ * The type Save command.
+ */
 public class SaveCommand extends Command {
+    /**
+     * Instantiates a new Save command.
+     */
     public SaveCommand() {
         super("save");
     }

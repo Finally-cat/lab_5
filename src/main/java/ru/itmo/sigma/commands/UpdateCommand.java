@@ -9,7 +9,13 @@ import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * The type Update command.
+ */
 public class UpdateCommand extends Command {
+    /**
+     * Instantiates a new Update command.
+     */
     public UpdateCommand() {
         super("update");
     }

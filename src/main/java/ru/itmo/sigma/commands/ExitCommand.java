@@ -5,7 +5,13 @@ import ru.itmo.sigma.data.WorkerTreeSet;
 import java.io.InputStream;
 import java.io.PrintStream;
 
+/**
+ * The type Exit command.
+ */
 public class ExitCommand extends Command {
+    /**
+     * Instantiates a new Exit command.
+     */
     public ExitCommand() {
         super("exit");
     }
