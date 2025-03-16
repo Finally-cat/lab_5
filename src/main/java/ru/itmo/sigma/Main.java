@@ -4,9 +4,7 @@ import ru.itmo.sigma.data.*;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,6 +21,7 @@ public class Main {
         HashMap<String, Command> hashMap = new HashMap<>();
         Environment environment = new Environment(hashMap, filePath);
 
+        Deque<String> history = new LinkedList<>();
         // Регистрация команд
         hashMap.put("test", new TestCommand());
         hashMap.put("help", new HelpCommand());
@@ -34,6 +33,8 @@ public class Main {
         hashMap.put("load", new LoadCommand());
         hashMap.put("update", new UpdateCommand());
         hashMap.put("remove_all_by_salary", new RemoveAllBySalaryCommand());
+        hashMap.put("remove_any_by_start_date", new RemoveAnyByStartDateCommand());
+        hashMap.put("history", new HistoryCommand(history));
         // Потоки ввода/вывода
         PrintStream printStream = System.out;
         InputStream inputStream = System.in;
@@ -49,6 +50,12 @@ public class Main {
             String commandName = s[0];
             String[] cArgs = (s.length > 1) ? Arrays.copyOfRange(s, 1, s.length) : new String[0];
 
+            if (!commandName.equals("history")) {
+                if (history.size() == 5) {
+                    history.removeFirst();
+                }
+                history.addLast(commandName);
+            }
             // Поиск и выполнение команды
             Command command = hashMap.get(commandName);
             if (command != null) {
@@ -56,10 +63,10 @@ public class Main {
                     command.execute(cArgs, environment, errorStream , printStream, inputStream, tree);
 
                 } catch (Exception e) {
-                    System.err.println("Ошибка выполнения команды: " + e.getMessage());
+                    errorStream.println("Ошибка выполнения команды: " + e.getMessage());
                 }
             } else {
-                System.err.println("Неизвестная команда: " + commandName);
+                errorStream.println("Неизвестная команда: " + commandName);
             }
         }
 

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
 import java.util.TreeSet;
 import java.util.NoSuchElementException;
 
@@ -59,25 +60,6 @@ public class WorkerTreeSet {
 //        System.out.println(xml);
 //
 //    }
-    public void treeToXml(OutputStream outputStream) {
-        XStream xstream = new XStream();
-        xstream.alias("worker", Worker.class);
-        xstream.alias("workers", WorkerTreeSet.class);
-
-        try (OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8)) {
-            xstream.toXML(this, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public TreeSet<Worker> getWTree() {
-        return wTree;
-    }
-
-    public void setWTree(TreeSet<Worker> wTree) {
-    }
-
 
     public Worker findById(long id) {
         return wTree.stream()
@@ -89,4 +71,13 @@ public class WorkerTreeSet {
     public void removeAllBySalary(double salary) {
         wTree.removeIf(worker -> worker.getSalary() == salary);
     }
+
+    public String removeByStartDate(LocalDate startDate) {
+       if (wTree.removeIf(worker -> worker.getStartDate().equals(startDate))) {
+           return "Worker with start date " + startDate + " was removed";
+       } else {
+           return "Worker with start date " + startDate + " was not found";
+       }
+    }
+
 }
