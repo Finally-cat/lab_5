@@ -35,6 +35,9 @@ public class Main {
         hashMap.put("remove_all_by_salary", new RemoveAllBySalaryCommand());
         hashMap.put("remove_any_by_start_date", new RemoveAnyByStartDateCommand());
         hashMap.put("history", new HistoryCommand(history));
+        hashMap.put("clear", new ClearCommand());
+        hashMap.put("print_unique_salary", new PrintUniqueSalaryCommand());
+
         // Потоки ввода/вывода
         PrintStream printStream = System.out;
         InputStream inputStream = System.in;

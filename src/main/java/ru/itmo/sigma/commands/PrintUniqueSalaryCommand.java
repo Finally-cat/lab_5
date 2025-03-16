@@ -1,0 +1,39 @@
+package ru.itmo.sigma.commands;
+
+import ru.itmo.sigma.data.Worker;
+import ru.itmo.sigma.data.WorkerTreeSet;
+
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.util.Set;
+import java.util.TreeSet;
+
+public class PrintUniqueSalaryCommand extends Command {
+    public PrintUniqueSalaryCommand() {
+        super("print_unique_salary");
+    }
+
+    @Override
+    public void execute(String[] strings, Environment env, PrintStream stderr, PrintStream stdout, InputStream stdin, WorkerTreeSet workerTreeSet) {
+        if (workerTreeSet.isEmpty()) {
+            stdout.println("Коллекция пуста. Уникальных значений зарплат нет.");
+            return;
+        }
+
+        Set<Long> uniqueSalaries = new TreeSet<>(); // TreeSet автоматически сортирует и хранит только уникальные значения
+
+        for (Worker worker : workerTreeSet.getWorkers()) {
+            uniqueSalaries.add(worker.getSalary());
+        }
+
+        stdout.println("Уникальные зарплаты сотрудников:");
+        for (Long salary : uniqueSalaries) {
+            stdout.println(salary);
+        }
+    }
+
+    @Override
+    public String getHelp() {
+        return "print_unique_salary: выводит уникальные значения зарплат всех работников.";
+    }
+}

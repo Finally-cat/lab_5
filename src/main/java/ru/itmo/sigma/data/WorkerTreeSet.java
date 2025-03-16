@@ -8,6 +8,8 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.Set;
 import java.util.TreeSet;
 import java.util.NoSuchElementException;
 
@@ -43,6 +45,13 @@ public class WorkerTreeSet {
         wTree.clear();
     }
 
+    public boolean isEmpty() {
+        return workers.isEmpty();
+    }
+
+    public Set<Worker> getWorkers() {
+        return Collections.unmodifiableSet(workers);
+    }
 
     public String removeId(long id) {
         if (wTree.removeIf(worker -> worker.getId() == id)) {
