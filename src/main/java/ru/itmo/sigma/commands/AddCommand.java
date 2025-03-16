@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Scanner;
 
 import static ru.itmo.sigma.IdGenerator.generateId;
@@ -34,7 +35,7 @@ public class AddCommand extends Command {
             LocalDate startDate = readDate(scanner, stdout, "Введите дату начала работы (yyyy-MM-dd): ");
             LocalDate endDate = readDate(scanner, stdout, "Введите дату окончания работы (yyyy-MM-dd): ");
 
-            java.util.Date birthday = java.sql.Date.valueOf(readDate(scanner, stdout, "Введите дату рождения (yyyy-MM-dd): "));
+            Date birthday = java.sql.Date.valueOf(readDate(scanner, stdout, "Введите дату рождения (yyyy-MM-dd): "));
 
             Color eyeColor = readEnum(scanner, stdout, "Введите цвет глаз", Color.class);
             Color hairColor = readEnum(scanner, stdout, "Введите цвет волос", Color.class);
@@ -68,7 +69,55 @@ public class AddCommand extends Command {
         return "Добавляет нового Worker. Ввод данных осуществляется интерактивно.";
     }
 
-    // Методы валидации и повторного ввода
+    // Методы валидации и повторного ввода и прочее
+
+    public Worker create( PrintStream stderr, PrintStream stdout, InputStream stdin) {
+        Worker worker = null;
+            Scanner scanner = new Scanner(stdin);
+
+            try {
+                long id = generateId();
+                stdout.print("Введите имя: ");
+                String name = scanner.nextLine().trim();
+
+                float xCoordinates = readFloat(scanner, stdout, "Введите X координату: ");
+                Double yCoordinates = readDouble(scanner, stdout, "Введите Y координату: ");
+                Coordinates coordinates = new Coordinates(xCoordinates, yCoordinates);
+
+                long salary = readLong(scanner, stdout, "Введите зарплату: ");
+
+                LocalDate startDate = readDate(scanner, stdout, "Введите дату начала работы (yyyy-MM-dd): ");
+                LocalDate endDate = readDate(scanner, stdout, "Введите дату окончания работы (yyyy-MM-dd): ");
+
+                Date birthday = java.sql.Date.valueOf(readDate(scanner, stdout, "Введите дату рождения (yyyy-MM-dd): "));
+
+                Color eyeColor = readEnum(scanner, stdout, "Введите цвет глаз", Color.class);
+                Color hairColor = readEnum(scanner, stdout, "Введите цвет волос", Color.class);
+                Country nationality = readEnum(scanner, stdout, "Введите страну", Country.class);
+
+                Position position = readEnum(scanner, stdout, "Введите должность", Position.class);
+
+                ZonedDateTime date = ZonedDateTime.now();
+
+                int xLocation = readInt(scanner, stdout, "Введите X локации: ");
+                Integer yLocation = readInt(scanner, stdout, "Введите Y локации: ");
+                Double zLocation = readDouble(scanner, stdout, "Введите Z локации: ");
+                stdout.print("Введите имя локации: ");
+                String nameLocation = scanner.nextLine().trim();
+
+                Location location = new Location(xLocation, yLocation, zLocation, nameLocation);
+                Person person = new Person(birthday, eyeColor, hairColor, nationality, location);
+
+                Worker a = new  Worker(id, name, coordinates, date, salary, startDate, endDate, position, person);
+                worker = a;
+                stdout.println("Worker создан " + worker);
+
+            } catch (Exception e) {
+                stderr.println("Ошибка: " + e.getMessage());
+            }
+            return worker;
+    }
+
 
     private float readFloat(Scanner scanner, PrintStream stdout, String prompt) {
         while (true) {
