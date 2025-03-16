@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
+import java.util.Arrays;
+import java.util.Scanner;
 
 import static ru.itmo.sigma.IdGenerator.generateId;
 
@@ -15,59 +17,128 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(String[] strings, Environment env, PrintStream stderr, PrintStream stdout, InputStream stdin, WorkerTreeSet workerTreeSet) {
-        if (strings.length < 15) { // Проверка данных
-            System.out.println("Недостаточно данных для создания Worker");
-            return;
-        }
+    public void execute(String[] args, Environment env, PrintStream stderr, PrintStream stdout, InputStream stdin, WorkerTreeSet workerTreeSet) {
+        Scanner scanner = new Scanner(stdin);
 
         try {
             long id = generateId();
+            stdout.print("Введите имя: ");
+            String name = scanner.nextLine().trim();
 
-            String name = strings[1];
+            float xCoordinates = readFloat(scanner, stdout, "Введите X координату: ");
+            Double yCoordinates = readDouble(scanner, stdout, "Введите Y координату: ");
+            Coordinates coordinates = new Coordinates(xCoordinates, yCoordinates);
 
-            float xCoordinates = Float.parseFloat(strings[2]);
-            Double  yCoordinates = Double.parseDouble(strings[3]);
-            Coordinates coordinates = new Coordinates(xCoordinates,yCoordinates);
+            long salary = readLong(scanner, stdout, "Введите зарплату: ");
 
-            long salary = Long.parseLong(strings[4]);
+            LocalDate startDate = readDate(scanner, stdout, "Введите дату начала работы (yyyy-MM-dd): ");
+            LocalDate endDate = readDate(scanner, stdout, "Введите дату окончания работы (yyyy-MM-dd): ");
 
-            LocalDate startDate = LocalDate.parse(strings[5]);
+            java.util.Date birthday = java.sql.Date.valueOf(readDate(scanner, stdout, "Введите дату рождения (yyyy-MM-dd): "));
 
-            LocalDate endDate = LocalDate.parse(strings[6]);
+            Color eyeColor = readEnum(scanner, stdout, "Введите цвет глаз", Color.class);
+            Color hairColor = readEnum(scanner, stdout, "Введите цвет волос", Color.class);
+            Country nationality = readEnum(scanner, stdout, "Введите страну", Country.class);
 
-            java.util.Date birthday = java.sql.Date.valueOf(strings[7]);
-            Color eyeColor = Color.valueOf(strings[8]);
-            Color hairColor = Color.valueOf(strings[9]);
-            Country nationality = Country.valueOf(strings[10]);
+            Position position = readEnum(scanner, stdout, "Введите должность", Position.class);
 
-            Position position = Position.valueOf(strings[11]);
             ZonedDateTime date = ZonedDateTime.now();
-            int x = Integer.parseInt(strings[12]);
-            Integer y = Integer.parseInt(strings[13]);
-            Double z = Double.parseDouble(strings[14]);
-            String nameLocation = strings[15];
-            Location location = new Location(x, y, z, nameLocation);
 
-            Person person = new Person(birthday, eyeColor, hairColor,nationality, location);
+            int xLocation = readInt(scanner, stdout, "Введите X локации: ");
+            Integer yLocation = readInt(scanner, stdout, "Введите Y локации: ");
+            Double zLocation = readDouble(scanner, stdout, "Введите Z локации: ");
+            stdout.print("Введите имя локации: ");
+            String nameLocation = scanner.nextLine().trim();
 
-            Worker worker = new Worker(id,name, coordinates, date, salary, startDate, endDate, position, person);
+            Location location = new Location(xLocation, yLocation, zLocation, nameLocation);
+            Person person = new Person(birthday, eyeColor, hairColor, nationality, location);
 
-            workerTreeSet.add(worker); // Добавляем объект в коллекцию
-            System.out.println("Worker добавлен: " + worker);
-        } catch (NumberFormatException e) {
-            System.out.println("Ошибка преобразования данных: " + e.getMessage());
-        } catch (IllegalArgumentException e) {
-            System.out.println("Ошибка: " + e.getMessage());
+            Worker worker = new Worker(id, name, coordinates, date, salary, startDate, endDate, position, person);
+
+            workerTreeSet.add(worker);
+            stdout.println("Worker добавлен: " + worker);
+
+        } catch (Exception e) {
+            stderr.println("Ошибка: " + e.getMessage());
         }
     }
 
     @Override
     public String getHelp() {
-        return "adds a new worker to workerTreeSet.\n " +
-                "Filling order: name, xCoordinates, yCoordinates, salary, startDate, endDate, birthday, eyeColor(RED, BLACK, YELLOW, ORANGE, BROWN), hairColor(RED, BLACK, YELLOW, ORANGE, BROWN), nationality (USA, SPAIN, INDIA, JAPAN), position, xlocation , ylocation, zlocation, nameLocation)";
+        return "Добавляет нового Worker. Ввод данных осуществляется интерактивно.";
     }
-//        strings = new String[0];
-//        Worker worker = new Worker();
-//        workerTreeSet.add();
+
+    // Методы валидации и повторного ввода
+
+    private float readFloat(Scanner scanner, PrintStream stdout, String prompt) {
+        while (true) {
+            try {
+                stdout.print(prompt);
+                return Float.parseFloat(scanner.nextLine().trim());
+            } catch (NumberFormatException e) {
+                stdout.println("Ошибка: Введите корректное число (float).");
+            }
+        }
+    }
+
+    private double readDouble(Scanner scanner, PrintStream stdout, String prompt) {
+        while (true) {
+            try {
+                stdout.print(prompt);
+                return Double.parseDouble(scanner.nextLine().trim());
+            } catch (NumberFormatException e) {
+                stdout.println("Ошибка: Введите корректное число (double).");
+            }
+        }
+    }
+
+    private long readLong(Scanner scanner, PrintStream stdout, String prompt) {
+        while (true) {
+            try {
+                stdout.print(prompt);
+                return Long.parseLong(scanner.nextLine().trim());
+            } catch (NumberFormatException e) {
+                stdout.println("Ошибка: Введите корректное целое число (long).");
+            }
+        }
+    }
+
+    private int readInt(Scanner scanner, PrintStream stdout, String prompt) {
+        while (true) {
+            try {
+                stdout.print(prompt);
+                return Integer.parseInt(scanner.nextLine().trim());
+            } catch (NumberFormatException e) {
+                stdout.println("Ошибка: Введите корректное целое число (int).");
+            }
+        }
+    }
+
+    private LocalDate readDate(Scanner scanner, PrintStream stdout, String prompt) {
+        while (true) {
+            try {
+                stdout.print(prompt);
+                return LocalDate.parse(scanner.nextLine().trim());
+            } catch (Exception e) {
+                stdout.println("Ошибка: Введите дату в формате yyyy-MM-dd.");
+            }
+        }
+    }
+
+    private <T extends Enum<T>> T readEnum(Scanner scanner, PrintStream stdout, String prompt, Class<T> enumClass) {
+        while (true) {
+            stdout.println(prompt + " (Доступные значения: " + String.join(", ", getEnumNames(enumClass)) + "): ");
+            String input = scanner.nextLine().trim().toUpperCase();
+            try {
+                return Enum.valueOf(enumClass, input);
+            } catch (IllegalArgumentException e) {
+                stdout.println("Ошибка: Некорректное значение. Попробуйте снова.");
+            }
+        }
+    }
+
+    private <T extends Enum<T>> String[] getEnumNames(Class<T> enumClass) {
+        return Arrays.stream(enumClass.getEnumConstants()).map(Enum::name).toArray(String[]::new);
+    }
 }
+
