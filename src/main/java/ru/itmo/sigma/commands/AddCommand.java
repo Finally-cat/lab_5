@@ -75,8 +75,6 @@ public class AddCommand extends Command {
         return "Добавляет нового Worker. Ввод данных осуществляется интерактивно.";
     }
 
-    // Методы валидации и повторного ввода и прочее
-
     /**
      * Create worker.
      *

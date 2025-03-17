@@ -25,8 +25,6 @@ public class RemoveGreaterCommand extends Command {
     public void execute(String[] strings, Environment env, PrintStream stderr, PrintStream stdout, InputStream stdin, WorkerTreeSet workerTreeSet) {
         Worker referenceWorker = addCom.create(stderr, stdout, stdin);
 
-//        int removedCount = workerTreeSet.worker -> worker.compareTo(referenceWorker) > 0
-//        stdout.println("Удалено элементов: " + removedCount);
     }
 
     @Override

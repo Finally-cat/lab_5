@@ -47,7 +47,6 @@ public class ExecuteScriptCommand extends Command {
                 String commandName = s[0];
                 String[] cArgs = (s.length > 1) ? Arrays.copyOfRange(s, 1, s.length) : new String[0];
 
-                // Поиск команды в текущем окружении
                 Command command = env.getCommand(commandName);
                 if (command != null) {
                     try {

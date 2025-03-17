@@ -27,7 +27,7 @@ public class PrintUniqueSalaryCommand extends Command {
             return;
         }
 
-        Set<Long> uniqueSalaries = new TreeSet<>(); // TreeSet автоматически сортирует и хранит только уникальные значения
+        Set<Long> uniqueSalaries = new TreeSet<>();
 
         for (Worker worker : workerTreeSet.getWorkers()) {
             uniqueSalaries.add(worker.getSalary());

@@ -23,19 +23,17 @@ public class XMLReader {
     public static TreeSet<Worker> readWorkersFromXML(String filePath) {
         XStream xstream = new XStream(new DomDriver());
 
-        // Разрешаем XStream работать с любыми классами
         xstream.addPermission(AnyTypePermission.ANY);
 
-        // Настраиваем алиасы для удобного XML
         xstream.alias("worker", Worker.class);
         xstream.alias("workers", TreeSet.class);
 
         try (FileReader reader = new FileReader(new File(filePath))) {
-            // Десериализация XML в TreeSet
+
             return (TreeSet<Worker>) xstream.fromXML(reader);
         } catch (IOException e) {
             e.printStackTrace();
-            return new TreeSet<>(); // Возвращаем пустой TreeSet в случае ошибки
+            return new TreeSet<>();
         }
     }
 }

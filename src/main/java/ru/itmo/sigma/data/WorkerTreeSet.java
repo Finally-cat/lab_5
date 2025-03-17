@@ -43,8 +43,8 @@ public class WorkerTreeSet {
      * Load.
      */
     public void load() {
-        workers.clear(); // Очищаем текущую коллекцию
-        workers.addAll(xmlManager.load()); // Загружаем из файла
+        workers.clear();
+        workers.addAll(xmlManager.load());
     }
 
     /**
@@ -146,7 +146,7 @@ public class WorkerTreeSet {
      */
     public Worker getMinWorker() {
         return wTree.stream()
-                .min(Worker::compareTo) // Используем compareTo() из Comparable<Worker>
+                .min(Worker::compareTo)
                 .orElseThrow(() -> new NoSuchElementException("Коллекция пуста, минимальный Worker отсутствует"));
     }
 }

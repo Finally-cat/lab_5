@@ -75,8 +75,6 @@ public class UpdateCommand extends Command {
         return " Обновляет данные Worker. Ввод данных осуществляется интерактивно.";
     }
 
-    //  Методы валидации и повторного ввода
-
     private float readFloat(Scanner scanner, PrintStream stdout, String prompt) {
         while (true) {
             try {

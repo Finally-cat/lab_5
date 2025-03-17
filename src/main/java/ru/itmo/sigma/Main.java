@@ -16,13 +16,10 @@ public class Main {
      * @param args the input arguments
      */
     public static void main(String[] args) {
-        // Получаем путь к файлу из переменной окружения
         String filePath = System.getenv("WORKER_FILE");
-        if (filePath == null) {
-            System.err.println("Переменная окружения WORKER_FILE не задана!");
-//            System.exit(1);
-            // ЗАЧЕМ ЭТО НУЖНО ??????????????????
-        }
+        //if (filePath == null) {
+          //  System.err.println("Переменная окружения WORKER_FILE не задана!");
+        //}
 
         // Создаем коллекцию и окружение
         WorkerTreeSet tree = new WorkerTreeSet(filePath);
@@ -30,7 +27,6 @@ public class Main {
         Environment environment = new Environment(hashMap, filePath);
 
         Deque<String> history = new LinkedList<>();
-        // Регистрация команд
         hashMap.put("test", new TestCommand());
         hashMap.put("help", new HelpCommand());
         hashMap.put("info", new InfoCommand());
@@ -46,13 +42,11 @@ public class Main {
         hashMap.put("clear", new ClearCommand());
         hashMap.put("print_unique_salary", new PrintUniqueSalaryCommand());
 
-        // Потоки ввода/вывода
         PrintStream printStream = System.out;
         InputStream inputStream = System.in;
         PrintStream errorStream = System.err;
         Scanner in = new Scanner(inputStream);
 
-        // Основной цикл команд
         while (in.hasNextLine()) {
             String line = in.nextLine().trim();
             if (line.isEmpty()) continue;
@@ -67,7 +61,6 @@ public class Main {
                 }
                 history.addLast(commandName);
             }
-            // Поиск и выполнение команды
             Command command = hashMap.get(commandName);
             if (command != null) {
                 try {
