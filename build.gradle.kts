@@ -3,20 +3,12 @@ plugins {
 }
 
 group = "ru.itmo.sigma"
-version = "1.1-SNAPSHOT"
+version = "1.3-SNAPSHOT"
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-}
-
-dependencies {
-    implementation("com.thoughtworks.xstream:xstream:1.4.20")
-}
 
 dependencies {
     implementation("javax.xml.bind:jaxb-api:2.3.1")
