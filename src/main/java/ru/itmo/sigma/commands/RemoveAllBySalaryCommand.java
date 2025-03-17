@@ -4,6 +4,7 @@ import ru.itmo.sigma.data.WorkerTreeSet;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Set;
 
 /**
  * The type Remove all by salary command.
@@ -21,9 +22,10 @@ public class RemoveAllBySalaryCommand extends Command {
     public void execute(String[] strings, Environment env, PrintStream stderr, PrintStream stdout, InputStream stdin, WorkerTreeSet workerTreeSet) {
         try {
             long salary = Long.parseLong(strings[0]);
-            workerTreeSet.removeAllBySalary(salary);
+            int removedCount = workerTreeSet.removeAllBySalary(salary);
+            stdout.println("Удалено элементов с зарплатой " + salary + ": " + removedCount);
         } catch (NumberFormatException e) {
-                stderr.println("Ошибка преобразования данных: " + e.getMessage());
+            stderr.println("Ошибка преобразования данных: " + e.getMessage());
         }
     }
 
@@ -32,3 +34,4 @@ public class RemoveAllBySalaryCommand extends Command {
         return " удалить из коллекции все элементы, значение поля salary которого эквивалентно заданному";
     }
 }
+
