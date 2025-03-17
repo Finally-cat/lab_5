@@ -1,12 +1,7 @@
 package ru.itmo.sigma.data;
 
-import com.thoughtworks.xstream.XStream;
 import ru.itmo.sigma.filemanaging.XmlWorkerManager;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Set;
@@ -120,9 +115,11 @@ public class WorkerTreeSet {
      * Remove all by salary.
      *
      * @param salary the salary
+     * @return
      */
-    public void removeAllBySalary(double salary) {
+    public int removeAllBySalary(double salary) {
         wTree.removeIf(worker -> worker.getSalary() == salary);
+        return 0;
     }
 
     /**

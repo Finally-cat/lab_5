@@ -57,7 +57,7 @@ public class Worker implements Comparable<Worker> {
         }
         this.setName(name);
         this.setCoordinates(coordinates);
-        this.creationDate = ZonedDateTime.now(); // тут непонятно как валидировать и нужно ли?
+        this.creationDate = ZonedDateTime.now();
         this.setSalary(salary);
         this.setStartDate(startDate);
         this.setEndDate(endDate);

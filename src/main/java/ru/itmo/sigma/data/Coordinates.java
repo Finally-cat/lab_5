@@ -8,10 +8,9 @@ public class Coordinates {
     private float x;
     private Double y; // Поле не может быть null
 
-    // Пустой конструктор для JAXB
     public Coordinates() {
-        this.x = 0;  // По умолчанию 0, чтобы избежать проблем с JAXB
-        this.y = 0.0; // Значение по умолчанию
+        this.x = 0;
+        this.y = 0.0;
     }
 
     public Coordinates(float x, Double y) {
