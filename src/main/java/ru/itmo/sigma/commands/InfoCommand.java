@@ -23,7 +23,7 @@ public class InfoCommand extends Command {
 
     @Override
     public String getHelp() {
-        return "Displays information about the collection";
+        return "Вывести информацию о коллекции.";
     }
 }
 

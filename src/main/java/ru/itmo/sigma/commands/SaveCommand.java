@@ -23,6 +23,6 @@ public class SaveCommand extends Command {
 
     @Override
     public String getHelp() {
-        return "save : сохранить коллекцию в XML-файл";
+        return " сохранить коллекцию в XML-файл";
     }
 }

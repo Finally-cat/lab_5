@@ -72,7 +72,7 @@ public class UpdateCommand extends Command {
 
     @Override
     public String getHelp() {
-        return "update: Обновляет данные Worker. Ввод данных осуществляется интерактивно.";
+        return " Обновляет данные Worker. Ввод данных осуществляется интерактивно.";
     }
 
     //  Методы валидации и повторного ввода

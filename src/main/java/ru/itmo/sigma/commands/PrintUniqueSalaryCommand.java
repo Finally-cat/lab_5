@@ -21,6 +21,7 @@ public class PrintUniqueSalaryCommand extends Command {
 
     @Override
     public void execute(String[] strings, Environment env, PrintStream stderr, PrintStream stdout, InputStream stdin, WorkerTreeSet workerTreeSet) {
+        stdout.println("Отладка: Количество элементов в WorkerTreeSet = " + workerTreeSet.getWorkers().size());
         if (workerTreeSet.isEmpty()) {
             stdout.println("Коллекция пуста. Уникальных значений зарплат нет.");
             return;

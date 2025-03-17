@@ -37,6 +37,6 @@ public class AddIfMinCommand extends Command {
     
     @Override
     public String getHelp() {
-        return "add_if_min {element}: добавляет новый элемент, если он меньше наименьшего.";
+        return " добавляет новый элемент, если он меньше наименьшего.";
     }
 }

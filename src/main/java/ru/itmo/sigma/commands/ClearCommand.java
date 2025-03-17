@@ -24,6 +24,6 @@ public class ClearCommand extends Command{
 
     @Override
     public String getHelp() {
-        return "clear : очистить коллекцию";
+        return " очистить коллекцию";
     }
 }

@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "ru.itmo.sigma"
-version = "1.0-SNAPSHOT"
+version = "1.1-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -21,5 +21,10 @@ dependencies {
 dependencies {
     implementation("javax.xml.bind:jaxb-api:2.3.1")
     implementation("org.glassfish.jaxb:jaxb-runtime:2.3.1")
+}
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = "ru.itmo.sigma.Main"
+    }
 }
 

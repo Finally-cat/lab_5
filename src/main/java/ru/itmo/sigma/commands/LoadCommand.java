@@ -22,6 +22,6 @@ public class LoadCommand extends Command {
 
     @Override
     public String getHelp() {
-        return "load : загрузить коллекцию из XML-файла";
+        return " загрузить коллекцию из XML-файла";
     }
 }

@@ -24,6 +24,6 @@ public class ExitCommand extends Command {
 
     @Override
     public String getHelp() {
-        return "Exits the program without saving";
+        return "Закрытие программы без сохранения данных";
     }
 }

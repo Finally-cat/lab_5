@@ -30,6 +30,6 @@ public class HistoryCommand extends Command {
 
     @Override
     public String getHelp() {
-        return "history : вывести последние 5 введенных команд (без аргументов)";
+        return " вывести последние 5 введенных команд (без аргументов)";
     }
 }

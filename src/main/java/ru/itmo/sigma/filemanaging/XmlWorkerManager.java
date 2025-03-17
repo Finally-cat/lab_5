@@ -22,7 +22,9 @@ public class XmlWorkerManager {
     }
 
     /**
-     * Сохраняет коллекцию в XML  @param workers the workers
+     * Save.
+     *
+     * @param workers the workers
      */
     public void save(TreeSet<Worker> workers) {
         try {
@@ -41,7 +43,9 @@ public class XmlWorkerManager {
     }
 
     /**
-     * Загружает коллекцию из XML  @return the tree set
+     * Load tree set.
+     *
+     * @return the tree set
      */
     public TreeSet<Worker> load() {
         try {

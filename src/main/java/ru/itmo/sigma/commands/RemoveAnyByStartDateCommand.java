@@ -29,6 +29,6 @@ public class RemoveAnyByStartDateCommand extends Command{
 
     @Override
     public String getHelp() {
-        return "remove_any_by_start_date: удалить из коллекции один элемент, значение поля startDate которого эквивалентно заданному";
+        return " удалить из коллекции один элемент, значение поля startDate которого эквивалентно заданному. Вводите дату в формате yyyy-MM-dd";
     }
 }

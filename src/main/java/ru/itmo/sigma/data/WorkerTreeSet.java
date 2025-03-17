@@ -57,13 +57,10 @@ public class WorkerTreeSet {
     }
 
     /**
-     * Tree to string string.
-     *
-     * @return the string
+     * Print all workers.
      */
-
     public void printAllWorkers() {
-        workers.forEach(worker -> System.out.println(worker.toString()));
+        wTree.forEach(wTree -> System.out.println(wTree.toString()));
     }
 
     /**
@@ -88,7 +85,7 @@ public class WorkerTreeSet {
      * @return the workers
      */
     public Set<Worker> getWorkers() {
-        return Collections.unmodifiableSet(workers);
+        return Collections.unmodifiableSet(wTree);
     }
 
     /**
@@ -105,14 +102,6 @@ public class WorkerTreeSet {
         }
     }
 
-    //    public void treeToXml() {
-//        XStream xstream = new XStream();
-//        xstream.alias("worker", Worker.class);
-//        xstream.alias("workers", WorkerTreeSet.class);
-//        String xml = xstream.toXML(this);
-//        System.out.println(xml);
-//
-//    }
 
     /**
      * Find by id worker.

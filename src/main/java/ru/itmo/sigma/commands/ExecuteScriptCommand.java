@@ -68,6 +68,6 @@ public class ExecuteScriptCommand extends Command {
 
     @Override
     public String getHelp() {
-        return "execute_script file_name: исполняет команды из файла, предотвращая циклы.";
+        return " исполняет команды из файла, предотвращая циклы.";
     }
 }

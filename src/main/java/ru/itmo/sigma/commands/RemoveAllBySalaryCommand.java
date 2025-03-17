@@ -20,7 +20,7 @@ public class RemoveAllBySalaryCommand extends Command {
     @Override
     public void execute(String[] strings, Environment env, PrintStream stderr, PrintStream stdout, InputStream stdin, WorkerTreeSet workerTreeSet) {
         try {
-            long salary = Long.parseLong(strings[1]);
+            long salary = Long.parseLong(strings[0]);
             workerTreeSet.removeAllBySalary(salary);
         } catch (NumberFormatException e) {
                 stderr.println("Ошибка преобразования данных: " + e.getMessage());
@@ -29,6 +29,6 @@ public class RemoveAllBySalaryCommand extends Command {
 
     @Override
     public String getHelp() {
-        return "remove_all_by_salary: удалить из коллекции все элементы, значение поля salary которого эквивалентно заданному";
+        return " удалить из коллекции все элементы, значение поля salary которого эквивалентно заданному";
     }
 }

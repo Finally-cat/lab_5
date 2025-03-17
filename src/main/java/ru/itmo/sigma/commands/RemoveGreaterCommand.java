@@ -6,10 +6,20 @@ import ru.itmo.sigma.data.WorkerTreeSet;
 import java.io.InputStream;
 import java.io.PrintStream;
 
+/**
+ * The type Remove greater command.
+ */
 public class RemoveGreaterCommand extends Command {
+    /**
+     * Instantiates a new Remove greater command.
+     */
     public RemoveGreaterCommand() {
         super("remove_greater");
     }
+
+    /**
+     * The Add com.
+     */
     AddCommand addCom = new AddCommand();
     @Override
     public void execute(String[] strings, Environment env, PrintStream stderr, PrintStream stdout, InputStream stdin, WorkerTreeSet workerTreeSet) {
@@ -21,6 +31,6 @@ public class RemoveGreaterCommand extends Command {
 
     @Override
     public String getHelp() {
-        return "remove_greater {element}: удаляет все элементы, превышающие заданный.";
+        return " удаляет все элементы, превышающие заданный.";
     }
 }

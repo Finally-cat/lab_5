@@ -44,6 +44,12 @@ public class Environment {
     private final XmlWorkerManager xmlManager;
     private final TreeSet<Worker> workers;
 
+    /**
+     * Gets command.
+     *
+     * @param commandName the command name
+     * @return the command
+     */
     public Command getCommand(String commandName) {
         return stringCommandHashMap.get(commandName);
     }
