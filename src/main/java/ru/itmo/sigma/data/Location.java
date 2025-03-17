@@ -9,14 +9,9 @@ public class Location {
     private Double z; //Поле не может быть null
     private String name; //Длина строки не должна быть больше 919, Поле может быть null
 
-    /**
-     * Instantiates a new Location.
-     *
-     * @param x    the x
-     * @param y    the y
-     * @param z    the z
-     * @param name the name
-     */
+    public Location() {
+    }
+
     public Location(int x, Integer y, Double z, String name) {
         this.x = x;
         this.y = y;

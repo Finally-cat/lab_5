@@ -6,7 +6,7 @@ import java.util.Date;
  * The type Person.
  */
 public class Person {
-    private final java.util.Date birthday; //Поле может быть null
+    private final Date birthday; //Поле может быть null
     private Color eyeColor; //Поле не может быть null
     private Color hairColor; //Поле не может быть null
     private Country nationality; //Поле не может быть null
@@ -21,13 +21,17 @@ public class Person {
      * @param nationality the nationality
      * @param location    the location
      */
-    public Person(java.util.Date birthday, Color eyeColor, Color hairColor, Country nationality, Location location) {
+    public Person(Date birthday, Color eyeColor, Color hairColor, Country nationality, Location location) {
     this.birthday = birthday;
     this.setEyeColor(eyeColor);
     this.setHairColor(hairColor);
     this.setNationality(nationality);
     this.setLocation(location);
  }
+    public Person() {
+        birthday = null;
+    }
+
 
     /**
      * Gets location.

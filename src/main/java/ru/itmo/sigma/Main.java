@@ -2,6 +2,7 @@ package ru.itmo.sigma;
 import ru.itmo.sigma.commands.*;
 import ru.itmo.sigma.data.*;
 
+import java.io.File;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.*;
@@ -15,13 +16,19 @@ public class Main {
      *
      * @param args the input arguments
      */
+
     public static void main(String[] args) {
         String filePath = System.getenv("WORKER_FILE");
+        if (filePath == null || filePath.isEmpty()) {
+            filePath = "workers.xml";  // Файл будет создан в корневой папке программы
+        }
+        System.out.println("Файл будет использоваться: " + new File(filePath).getAbsolutePath());
+
+        /*String filePath = System.getenv("WORKER_FILE");
         //if (filePath == null) {
           //  System.err.println("Переменная окружения WORKER_FILE не задана!");
-        //}
+        //}*/
 
-        // Создаем коллекцию и окружение
         WorkerTreeSet tree = new WorkerTreeSet(filePath);
         HashMap<String, Command> hashMap = new HashMap<>();
         Environment environment = new Environment(hashMap, filePath);

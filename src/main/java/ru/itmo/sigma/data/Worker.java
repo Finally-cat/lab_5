@@ -1,5 +1,11 @@
 package ru.itmo.sigma.data;
 
+import ru.itmo.sigma.filemanaging.LocalDateAdapter;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Objects;
@@ -9,16 +15,24 @@ import java.util.Scanner;
 /**
  * The type Worker.
  */
+@XmlRootElement(name = "worker")
+@XmlAccessorType(XmlAccessType.FIELD)
+
 public class Worker implements Comparable<Worker> {
     private final long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
     private final java.time.ZonedDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private long salary; //Значение поля должно быть больше 0
-    private java.time.LocalDate startDate; //Поле не может быть null
-    private java.time.LocalDate endDate; //Поле может быть null
+    //private java.time.LocalDate startDate; //Поле не может быть null
+    //private java.time.LocalDate endDate; //Поле может быть null
     private Position position; //Поле может быть null
     private Person person; //Поле не может быть null
+
+    public Worker() {
+        this.id = 0; // Или любое другое значение по умолчанию
+        this.creationDate = ZonedDateTime.now(); // Или другое значение по умолчанию
+    }
 
     /**
      * Instantiates a new Worker.
@@ -34,6 +48,7 @@ public class Worker implements Comparable<Worker> {
      * @param person       the person
      * @throws IllegalArgumentException the illegal argument exception
      */
+
     public Worker(long id, String name, Coordinates coordinates, ZonedDateTime creationDate, long salary, LocalDate startDate, LocalDate endDate, Position position, Person person) throws IllegalArgumentException {
         if (id > 0) {
             this.id = id;
@@ -49,6 +64,14 @@ public class Worker implements Comparable<Worker> {
         this.setPosition(position);
         this.setPerson(person);
     }
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    private LocalDate hireDate;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    private LocalDate startDate;
+
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    private LocalDate endDate;
+
 
     /**
      * Gets id.
