@@ -22,6 +22,7 @@ public class RemoveAnyByStartDateCommand extends Command{
         try {
             LocalDate startDate = LocalDate.parse(strings[0]);
             stdout.println(workerTreeSet.removeByStartDate(startDate));
+
         } catch (NumberFormatException e) {
             stderr.println("Ошибка преобразования данных: " + e.getMessage());
         }

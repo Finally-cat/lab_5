@@ -1,81 +1,151 @@
 package ru.itmo.sigma.data;
 
-import ru.itmo.sigma.data.Worker;
+import com.thoughtworks.xstream.XStream;
 import ru.itmo.sigma.filemanaging.XmlWorkerManager;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.Collections;
-import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.NoSuchElementException;
 
+
+/**
+ * The type Worker tree set.
+ */
 public class WorkerTreeSet {
+    private TreeSet<Worker> wTree = new TreeSet<>();
     private final TreeSet<Worker> workers;
     private final XmlWorkerManager xmlManager;
 
+    /**
+     * Instantiates a new Worker tree set.
+     *
+     * @param filePath the file path
+     */
     public WorkerTreeSet(String filePath) {
         this.xmlManager = new XmlWorkerManager(filePath);
         this.workers = xmlManager.load();
     }
 
+    /**
+     * Save.
+     */
     public void save() {
-        xmlManager.save(workers); // Используем workers, а не wTree
+        xmlManager.save(workers);
     }
 
+    /**
+     * Load.
+     */
     public void load() {
         workers.clear();
         workers.addAll(xmlManager.load());
     }
 
+    /**
+     * Add.
+     *
+     * @param worker the worker
+     */
     public void add(Worker worker) {
-        workers.add(worker); // Записываем в workers, а не wTree
+        wTree.add(worker);
     }
 
+    /**
+     * Print all workers.
+     */
     public void printAllWorkers() {
-        workers.forEach(System.out::println);
+        wTree.forEach(wTree -> System.out.println(wTree.toString()));
     }
 
+    /**
+     * Clear.
+     */
     public void clear() {
-        workers.clear();
+        wTree.clear();
     }
 
+    /**
+     * Is empty boolean.
+     *
+     * @return the boolean
+     */
     public boolean isEmpty() {
         return workers.isEmpty();
     }
 
+    /**
+     * Gets workers.
+     *
+     * @return the workers
+     */
     public Set<Worker> getWorkers() {
-        return Collections.unmodifiableSet(workers);
+        return Collections.unmodifiableSet(wTree);
     }
 
+    /**
+     * Remove id string.
+     *
+     * @param id the id
+     * @return the string
+     */
     public String removeId(long id) {
-        if (workers.removeIf(worker -> worker.getId() == id)) {
-            return "id " + id + " был удалён";
+        if (wTree.removeIf(worker -> worker.getId() == id)) {
+            return "id " + id + " was removed";
         } else {
-            return "id " + id + " не найден";
+            return "id " + id + " was not found";
         }
     }
 
+
+    /**
+     * Find by id worker.
+     *
+     * @param id the id
+     * @return the worker
+     */
     public Worker findById(long id) {
-        return workers.stream()
+        return wTree.stream()
                 .filter(worker -> worker.getId() == id)
                 .findFirst()
-                .orElseThrow(() -> new NoSuchElementException("Worker с id " + id + " не найден"));
+                .orElseThrow(() -> new NoSuchElementException("Worker with id " + id + " not found"));
     }
 
+    /**
+     * Remove all by salary.
+     *
+     * @param salary the salary
+     */
     public void removeAllBySalary(double salary) {
-        workers.removeIf(worker -> worker.getSalary() == salary);
+        wTree.removeIf(worker -> worker.getSalary() == salary);
     }
 
+    /**
+     * Remove by start date string.
+     *
+     * @param startDate the start date
+     * @return the string
+     */
     public String removeByStartDate(LocalDate startDate) {
-        if (workers.removeIf(worker -> worker.getStartDate().equals(startDate))) {
-            return "Worker с датой начала " + startDate + " удалён";
-        } else {
-            return "Worker с датой начала " + startDate + " не найден";
-        }
+       if (wTree.removeIf(worker -> worker.getStartDate().equals(startDate))) {
+           return "Worker with start date " + startDate + " was removed";
+       } else {
+           return "Worker with start date " + startDate + " was not found";
+       }
     }
 
+    /**
+     * Gets min worker.
+     *
+     * @return the min worker
+     */
     public Worker getMinWorker() {
-        return workers.stream()
+        return wTree.stream()
                 .min(Worker::compareTo)
                 .orElseThrow(() -> new NoSuchElementException("Коллекция пуста, минимальный Worker отсутствует"));
     }

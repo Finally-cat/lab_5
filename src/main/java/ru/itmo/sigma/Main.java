@@ -48,6 +48,9 @@ public class Main {
         hashMap.put("history", new HistoryCommand(history));
         hashMap.put("clear", new ClearCommand());
         hashMap.put("print_unique_salary", new PrintUniqueSalaryCommand());
+        hashMap.put("add_if_min", new AddIfMinCommand());
+        hashMap.put("remove_greater", new RemoveGreaterCommand());
+        hashMap.put("execute_script", new ExecuteScriptCommand());
 
         PrintStream printStream = System.out;
         InputStream inputStream = System.in;
