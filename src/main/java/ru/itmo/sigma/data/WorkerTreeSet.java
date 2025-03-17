@@ -115,11 +115,11 @@ public class WorkerTreeSet {
      * Remove all by salary.
      *
      * @param salary the salary
-     * @return
      */
     public int removeAllBySalary(double salary) {
+        int initialSize = wTree.size();
         wTree.removeIf(worker -> worker.getSalary() == salary);
-        return 0;
+        return initialSize - wTree.size();
     }
 
     /**

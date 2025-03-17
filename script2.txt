@@ -1,0 +1,7 @@
+show
+remove_all_by_salary 50000
+print_unique_salary
+history
+clear
+info
+execute_script script.txt

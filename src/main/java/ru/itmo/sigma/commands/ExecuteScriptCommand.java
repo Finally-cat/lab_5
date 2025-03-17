@@ -3,6 +3,9 @@ package ru.itmo.sigma.commands;
 import ru.itmo.sigma.data.WorkerTreeSet;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,7 +15,7 @@ import java.util.Set;
  * The type Execute script command.
  */
 public class ExecuteScriptCommand extends Command {
-    private static final Set<String> executedFiles = new HashSet<>();
+    private static final Set<Path> executedFiles = new HashSet<>();
 
     /**
      * Instantiates a new Execute script command.
@@ -28,16 +31,21 @@ public class ExecuteScriptCommand extends Command {
             return;
         }
 
-        String fileName = strings[0];
+        Path filePath = Paths.get(strings[0]).toAbsolutePath().normalize();
 
-        if (executedFiles.contains(fileName)) {
-            stderr.println("Ошибка: обнаружен цикл в файле " + fileName);
+        if (!Files.exists(filePath)) {
+            stderr.println("Ошибка: файл " + filePath + " не найден.");
             return;
         }
 
-        executedFiles.add(fileName);
+        if (executedFiles.contains(filePath)) {
+            stderr.println("Ошибка: обнаружен цикл в файле " + filePath);
+            return;
+        }
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+        executedFiles.add(filePath);
+
+        try (BufferedReader reader = Files.newBufferedReader(filePath)) {
             String line;
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
@@ -61,12 +69,13 @@ public class ExecuteScriptCommand extends Command {
         } catch (IOException e) {
             stderr.println("Ошибка чтения файла: " + e.getMessage());
         } finally {
-            executedFiles.remove(fileName);
+            executedFiles.remove(filePath);
         }
     }
 
     @Override
     public String getHelp() {
-        return " исполняет команды из файла, предотвращая циклы.";
+        return " выполнить команды из файла, избегая циклического выполнения. Указывайте путь к файлу.";
     }
 }
+
